@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -6,109 +7,155 @@
   font-family: "Spartan", sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
+body {
+  background-color: #1a1a1d;
+  color: #f1f1f1;
+  width: 100%;
 }
 
-
-h1 {
-  font-size: 50px;
-  line-height: 64px;
-  color: #222;
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 80px;
+  background: #2e2e38;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-h2 {
-  font-size: 46px;
-  line-height: 54px;
-  color: #222;
+.logo {
+  width: 80px;
+  height: auto;
 }
 
-h4 {
-  font-size: 20px;
-  color: #222;
+#navbar {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 
-h6 {
-  font-weight: 700;
-  font-size: 12px;
+#navbar li {
+  list-style: none;
 }
 
-p {
+#navbar li a {
+  text-decoration: none;
   font-size: 16px;
-  color: #465b52;
-  margin: 15px 0 20px 0;
+  color: #f1f1f1;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+  color: #ff6f00;
+}
+
+#navbar li img {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+}
+
+#hero {
+  background: linear-gradient(to right, #2e2e38, #1f1f26);
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+#hero h4 {
+  color: #ff8c42;
+  margin-bottom: 10px;
+}
+
+#hero h2 {
+  color: #ff6f00;
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+
+#hero h1 {
+  color: #e65c00;
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+#hero p {
+  color: #ccc;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+#hero button {
+  background-color: #ff6f00;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#hero button:hover {
+  background-color: #e65c00;
 }
 
 .section-p1 {
   padding: 40px 80px;
 }
 
-.section-m1 {
-  margin: 40px 0;
+#products {
+  background-color: #222;
 }
 
-body {
-  width: 100%;
+#products h2 {
+  text-align: center;
+  color: #ff6f00;
+  margin-bottom: 30px;
 }
 
-#header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 80px;
-    background: #E3E6F3;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
 }
 
-#navbar{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.product-card {
+  background: #2e2e38;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: 0.3s ease;
 }
 
-#navbar li{
-    list-style: none;
-    padding: 0 20px;
-    position: relative;
+.product-card:hover {
+  transform: scale(1.03);
 }
 
-#navbar li a{
-    text-decoration: none;
-    font-size: 16px;
-    color: #1a1a1a;
-    transition: 0.3s ease;
+.product-card img {
+  max-width: 100%;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 
-#navbar li a:hover, #navbar li a.active{
-    color: #088178;
+.product-card h5 {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #f1f1f1;
 }
 
-#navbar li a.active::after, #navbar li a:hover::after{
-    content: "";
-    width: 30%;
-    height: 2px;
-    background: #088178;
-    position: absolute;
-    bottom: -4px;
-    left: 20px;
-}
-
-
-.logo {
-    width: 70px; 
-    height: auto;
-}
-
-#navbar li img {
-    width: 45px; 
-    height: 45px;
-    object-fit: contain;
-    vertical-align: middle;
-    filter: grayscale(100%) brightness(0); 
-    transition: filter 0.3s ease;
-}
-
-#navbar li a:hover img,
-#navbar li a.active img {
-    filter: brightness(0) saturate(100%) sepia(100%) hue-rotate(140deg); 
+.product-card p {
+  color: #ff6f00;
+  font-weight: bold;
 }
