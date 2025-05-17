@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/CSS/login.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/CSS/login.css" />
 </head>
 <body>
     <div class="main-login">
         <div class="left-login">
             <h1>Faça Login</h1>
-            <img src="assets/img/camera-animate.svg " class="left-login-imagem" alt="photo imagem">
+            <img src="assets/img/camera-animate.svg" class="left-login-imagem" alt="photo imagem" />
         </div>
         <div class="right-login">
             <div class="card-login">
                 <h1>Login</h1>
-                <div class="textfild">
-                    <label for="usuario">Usuário</label>
-                    <input type="text" name="usuario" placeholder="Usuário">    
-                </div>
-                <div class="textfild">
-                    <label for="usuario">Senha</label>
-                    <input type="password" name="senha" placeholder="Senha">    
-                </div>
-                <button class="btn-login">Login</button>
-
+                <form id="login-form">
+                    <div class="textfild">
+                        <label for="usuario">Usuário</label>
+                        <input type="text" id="usuario" name="usuario" placeholder="Usuário" />
+                    </div>
+                    <div class="textfild">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha" placeholder="Senha" />
+                    </div>
+                    <button class="btn-login" type="submit" disabled>Login</button>
+                </form>
             </div>
         </div>
     </div>
+
+    <script src="assets/JavaScript/login.js"></script>
 </body>
 </html>
