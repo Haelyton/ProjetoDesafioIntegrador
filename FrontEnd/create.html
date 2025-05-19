@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar Produto</title>
+  <link rel="stylesheet" href="assets/CSS/create.css" />
+</head>
+<body>
+  <header id="header">
+    <a href="#"><img src="assets/img/image-removebg-preview.png" class="logo" alt="Logo da empresa" /></a>
+    <nav>
+      <ul id="navbar">
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a class="active" href="#">Criar Produto</a></li>
+        <li><a href="#">Estoque</a></li>
+        <li><a href="#">Relatórios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="form-container">
+    <h1>Cadastrar Novo Produto</h1>
+    <form id="productForm" aria-label="Formulário de cadastro de produto">
+      <div class="form-group">
+        <label for="nome">Nome do Produto</label>
+        <input type="text" id="nome" name="nome" required aria-required="true" />
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" name="descricao" rows="4" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="preco">Preço (R$)</label>
+        <input type="number" id="preco" name="preco" step="0.01" min="0" required />
+      </div>
+
+      <div class="form-group">
+        <label for="categoria">Categoria</label>
+        <select id="categoria" name="categoria" required>
+          <option value="">Selecione</option>
+          <option value="camera">Câmera</option>
+          <option value="cartao">Cartão de Memória</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="estoque">Estoque</label>
+        <input type="number" id="estoque" name="estoque" min="0" required />
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" name="status" required>
+          <option value="ativo">Ativo</option>
+          <option value="inativo">Inativo</option>
+        </select>
+      </div>
+
+      <button type="submit">Cadastrar Produto</button>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("productForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Produto cadastrado com sucesso!");
+    });
+  </script>
+</body>
+</html>
