@@ -59,6 +59,15 @@
         </select>
       </div>
 
+      <div class="form-group">
+        <label for="imagem">Imagem do Produto</label>
+        <div class="file-upload">
+          <input type="file" id="imagem" name="imagem" accept="image/*" required />
+          <label for="imagem" class="custom-file-label">Selecionar Imagem</label>
+        </div>
+        <img id="preview-img" src="" alt="Pré-visualização da imagem" />
+      </div>
+
       <button type="submit">Cadastrar Produto</button>
     </form>
   </main>
