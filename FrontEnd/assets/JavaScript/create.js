@@ -14,4 +14,14 @@ document.getElementById('imagem').addEventListener('change', function () {
       preview.style.display = 'none';
     }
   });
-  
+
+  const menuToggle = document.getElementById('menu-toggle');
+const navbar = document.getElementById('navbar');
+
+menuToggle.addEventListener('click', () => {
+  navbar.classList.toggle('show');
+  menuToggle.classList.toggle('active');
+
+  const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+  menuToggle.setAttribute('aria-expanded', !expanded);
+});
