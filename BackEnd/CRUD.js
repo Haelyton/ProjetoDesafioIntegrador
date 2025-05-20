@@ -4,7 +4,7 @@ function gerarId() {
   return Date.now();
 }
 
-function getProdutos() {
+export function getProdutos() {
   return JSON.parse(localStorage.getItem("produtos")) || [];
 }
 
