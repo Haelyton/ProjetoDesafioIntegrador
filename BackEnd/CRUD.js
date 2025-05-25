@@ -29,3 +29,8 @@ export function atualizarProduto(id, dadosAtualizados) {
   }
   return false;
 }
+
+export function getProdutoPorId(id) {
+  const produtos = getProdutos();
+  return produtos.find(prod => prod.id === id);
+}
