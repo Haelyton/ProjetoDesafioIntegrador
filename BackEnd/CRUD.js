@@ -19,4 +19,13 @@ function criarProduto(produto) {
   salvarProdutos(produtos);
 }
 
-// (Você pode colocar funções para read, update e delete aqui depois)
+export function atualizarProduto(id, dadosAtualizados) {
+  const produtos = getProdutos();
+  const index = produtos.findIndex(prod => prod.id === id);
+  if (index !== -1) {
+    produtos[index] = { ...produtos[index], ...dadosAtualizados, id };
+    salvarProdutos(produtos);
+    return true;
+  }
+  return false;
+}
