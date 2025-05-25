@@ -1,5 +1,3 @@
-// funções CRUD no localStorage
-
 function gerarId() {
   return Date.now();
 }
@@ -33,4 +31,15 @@ export function atualizarProduto(id, dadosAtualizados) {
 export function getProdutoPorId(id) {
   const produtos = getProdutos();
   return produtos.find(prod => prod.id === id);
+}
+
+export function deletarProduto(id) {
+  let produtos = getProdutos();
+  const tamanhoAntes = produtos.length;
+  produtos = produtos.filter(prod => prod.id !== id);
+  if (produtos.length < tamanhoAntes) {
+    salvarProdutos(produtos);
+    return true;
+  }
+  return false;
 }
