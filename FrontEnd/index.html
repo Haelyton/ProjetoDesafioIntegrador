@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gerenciador de Produtos</title>
   <link rel="stylesheet" href="assets/CSS/home.css" />
+  <style>
+    .search-container {
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    #searchInput {
+      padding: 10px;
+      width: 300px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
   <header id="header">
@@ -22,10 +36,16 @@
 
   <main class="container">
     <h1>Gerenciador de Produtos</h1>
-    <div class="products-grid" id="productsGrid">
-      <!-- Produtos serão inseridos aqui via JS -->
-    </div>
-  </main>
+
+     <!-- Campo de busca -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar produto pelo nome..." />
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+    <!-- Produtos serão inseridos aqui via JS -->
+  </div>
+</main>
 
   <!-- Modal de edição -->
   <div id="modal" class="modal">

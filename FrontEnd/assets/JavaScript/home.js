@@ -54,22 +54,12 @@ function abrirModal(produto) {
   document.getElementById("modal-img-input").value = "";
 }
 
-// Fechar modal edição
-document.querySelector(".close-btn").addEventListener("click", () => {
-  fecharModal();
-});
+// Fechar modais
+document.querySelector(".close-btn").addEventListener("click", () => fecharModal());
 
-// Fechar modal ao clicar fora do conteúdo
 window.addEventListener("click", (e) => {
-  const modal = document.getElementById("modal");
-  if (e.target === modal) {
-    fecharModal();
-  }
-
-  const modalDelete = document.getElementById("modal-confirm-delete");
-  if (e.target === modalDelete) {
-    fecharModalDelete();
-  }
+  if (e.target === document.getElementById("modal")) fecharModal();
+  if (e.target === document.getElementById("modal-confirm-delete")) fecharModalDelete();
 });
 
 function fecharModal() {
@@ -81,14 +71,12 @@ function fecharModalDelete() {
   document.getElementById("modal-confirm-delete").style.display = "none";
 }
 
-// Atualizar produto - captura submit do form com tratamento da imagem
+// Atualizar produto
 document.getElementById("form-editar-produto").addEventListener("submit", (e) => {
   e.preventDefault();
-
   if (!produtoAtual) return;
 
-  const inputImagemModal = document.getElementById("modal-img-input");
-  const file = inputImagemModal.files[0];
+  const file = document.getElementById("modal-img-input").files[0];
 
   const atualizarEFechar = (imagemBase64) => {
     const dadosAtualizados = {
@@ -117,13 +105,12 @@ document.getElementById("form-editar-produto").addEventListener("submit", (e) =>
   }
 });
 
-// Botão de excluir produto no modal edição abre o modal de confirmação
+// Excluir produto
 document.getElementById("btn-deletar-produto").addEventListener("click", () => {
   if (!produtoAtual) return;
   document.getElementById("modal-confirm-delete").style.display = "flex";
 });
 
-// Botão Confirmar do modal de exclusão
 document.getElementById("confirm-delete-btn").addEventListener("click", () => {
   if (!produtoAtual) return;
   deletarProduto(produtoAtual.id);
@@ -132,14 +119,10 @@ document.getElementById("confirm-delete-btn").addEventListener("click", () => {
   carregarProdutos();
 });
 
-// Botão Cancelar do modal de exclusão
-document.getElementById("cancel-delete-btn").addEventListener("click", () => {
-  fecharModalDelete();
-});
+document.getElementById("cancel-delete-btn").addEventListener("click", () => fecharModalDelete());
 
-// Função para carregar e renderizar produtos
-function carregarProdutos() {
-  const produtos = getProdutos() || [];
+// Renderizar produtos no grid
+function renderizarProdutos(produtos) {
   const grid = document.getElementById("productsGrid");
   grid.innerHTML = "";
   produtos.forEach(prod => {
@@ -147,5 +130,23 @@ function carregarProdutos() {
   });
 }
 
-// Carrega os produtos ao abrir a página
+// Carregar todos os produtos
+function carregarProdutos() {
+  const produtos = getProdutos() || [];
+  renderizarProdutos(produtos);
+}
+
+// Campo de busca por nome (filtro dinâmico)
+const searchInput = document.getElementById("searchInput");
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    const termo = searchInput.value.trim().toLowerCase();
+    const produtos = getProdutos() || [];
+
+    const filtrados = produtos.filter(p => p.nome.toLowerCase().includes(termo));
+    renderizarProdutos(filtrados);
+  });
+}
+
+// Carregar ao abrir a página
 window.addEventListener("load", carregarProdutos);
