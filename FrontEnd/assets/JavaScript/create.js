@@ -1,57 +1,53 @@
+import { criarProduto } from '/ProjetoDesafioIntegrador/BackEnd/CRUD.js';
+
 const inputImagem = document.getElementById("imagem");
-    const previewImg = document.getElementById("preview-img");
+const previewImg = document.getElementById("preview-img");
 
-    inputImagem.addEventListener("change", function () {
-      const file = this.files[0];
+inputImagem.addEventListener("change", function () {
+  const file = this.files[0];
 
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          previewImg.src = e.target.result;
-          previewImg.style.display = "block";
-        };
-        reader.readAsDataURL(file);
-      } else {
-        previewImg.src = "";
-        previewImg.style.display = "none";
-      }
-    });
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      previewImg.src = e.target.result;
+      previewImg.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  } else {
+    previewImg.src = "";
+    previewImg.style.display = "none";
+  }
+});
 
-    // Submit do form com captura da imagem em base64 e salvar produto
-    document.getElementById("productForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+document.getElementById("productForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-      const file = inputImagem.files[0];
-      if (!file) {
-        alert("Por favor, selecione uma imagem para o produto.");
-        return;
-      }
+  const file = inputImagem.files[0];
+  if (!file) {
+    alert("Por favor, selecione uma imagem para o produto.");
+    return;
+  }
 
-      const reader = new FileReader();
+  const reader = new FileReader();
 
-      reader.onload = function (event) {
-        const imagemBase64 = event.target.result;
+  reader.onload = function (event) {
+    const imagemBase64 = event.target.result;
 
-        const produto = {
-          nome: document.getElementById("nome").value,
-          descricao: document.getElementById("descricao").value,
-          preco: parseFloat(document.getElementById("preco").value),
-          categoria: document.getElementById("categoria").value,
-          estoque: parseInt(document.getElementById("estoque").value),
-          status: document.getElementById("status").value,
-          imagem: imagemBase64
-        };
+    const produto = {
+      nome: document.getElementById("nome").value.trim(),
+      descricao: document.getElementById("descricao").value.trim(),
+      preco: parseFloat(document.getElementById("preco").value),
+      categoria: document.getElementById("categoria").value,
+      estoque: parseInt(document.getElementById("estoque").value),
+      status: document.getElementById("status").value,
+      imagem: imagemBase64
+    };
 
-        criarProduto(produto);
+    criarProduto(produto);
 
-        alert("Produto cadastrado com sucesso!");
-        document.getElementById("productForm").reset();
-        previewImg.src = "";
-        previewImg.style.display = "none";
+    // Navegar para dashboard APÓS salvar produto
+    window.location.href = "index.html";
+  };
 
-        
-         window.location.href = "index.html";
-      };
-
-      reader.readAsDataURL(file);
-    });
+  reader.readAsDataURL(file);
+});

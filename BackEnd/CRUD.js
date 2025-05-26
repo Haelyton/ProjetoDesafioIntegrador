@@ -10,7 +10,7 @@ function salvarProdutos(produtos) {
   localStorage.setItem("produtos", JSON.stringify(produtos));
 }
 
-function criarProduto(produto) {
+export function criarProduto(produto) {
   const produtos = getProdutos();
   produto.id = gerarId();
   produtos.push(produto);

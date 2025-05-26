@@ -27,19 +27,42 @@
     </div>
   </main>
 
-  <!-- JS importado como módulo -->
-  <script type="module" src="assets/JavaScript/home.js"></script>
+  <!-- Modal de edição -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close-btn">&times;</span>
-      <img id="modal-img" src="" alt="Imagem do produto" />
-      <h2 id="modal-nome"></h2>
-      <p id="modal-descricao"></p>
-      <p id="modal-preco"></p>
-      <p id="modal-categoria"></p>
-      <p id="modal-estoque"></p>
-      <p id="modal-status"></p>
+      <form id="form-editar-produto">
+        <img id="modal-img-preview" src="" alt="Imagem do produto" />
+        <input type="file" id="modal-img-input" accept="image/*" />
+        
+        <input type="text" id="modal-nome" placeholder="Nome" required />
+        <textarea id="modal-descricao" placeholder="Descrição" required></textarea>
+        <input type="number" id="modal-preco" placeholder="Preço (R$)" step="0.01" required />
+        <input type="text" id="modal-categoria" placeholder="Categoria" />
+        <input type="number" id="modal-estoque" placeholder="Estoque" required />
+        <select id="modal-status" required>
+          <option value="ativo">Ativo</option>
+          <option value="inativo">Inativo</option>
+        </select>
+    
+        <button type="submit">Atualizar Produto</button>
+        <button type="button" id="btn-deletar-produto" style="background-color: #ff4d4d;">Excluir Produto</button>
+      </form>
     </div>
   </div>
+
+  <!-- Modal de confirmação de exclusão -->
+  <div id="modal-confirm-delete" class="modal">
+    <div class="modal-content modal-delete-content">
+      <h2>Confirmar Exclusão</h2>
+      <p>Tem certeza que deseja excluir este produto?</p>
+      <div class="modal-buttons">
+        <button id="confirm-delete-btn" class="btn-confirm">Confirmar</button>
+        <button id="cancel-delete-btn" class="btn-cancel">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="assets/JavaScript/home.js"></script>
 </body>
 </html>
