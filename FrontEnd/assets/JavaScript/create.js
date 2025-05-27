@@ -51,3 +51,20 @@ document.getElementById("productForm").addEventListener("submit", function (e) {
 
   reader.readAsDataURL(file);
 });
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const navbar = document.getElementById('navbar');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navbar.classList.toggle('show');
+  });
+
+  // Opcional: fechar menu ao clicar em um link
+  const navLinks = document.querySelectorAll('#navbar a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navbar.classList.remove('show');
+    });
+  });

@@ -5,10 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gerenciador de Produtos</title>
   <link rel="stylesheet" href="assets/CSS/home.css" />
+ 
 </head>
 <body>
   <header id="header">
     <a href="#"><img src="assets/img/image-removebg-preview.png" class="logo" alt="Logo da empresa" /></a>
+  
+    <!-- Botão do menu hambúrguer -->
+    <button id="menu-toggle" class="hamburger" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  
     <nav>
       <ul id="navbar">
         <li><a class="active" href="#">Dashboard</a></li>
@@ -19,13 +28,19 @@
       </ul>
     </nav>
   </header>
-
+  
   <main class="container">
     <h1>Gerenciador de Produtos</h1>
-    <div class="products-grid" id="productsGrid">
-      <!-- Produtos serão inseridos aqui via JS -->
-    </div>
-  </main>
+
+     <!-- Campo de busca -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar produto pelo nome..." />
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+    <!-- Produtos serão inseridos aqui via JS -->
+  </div>
+</main>
 
   <!-- Modal de edição -->
   <div id="modal" class="modal">
