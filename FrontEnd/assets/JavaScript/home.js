@@ -150,3 +150,11 @@ if (searchInput) {
 
 // Carregar ao abrir a página
 window.addEventListener("load", carregarProdutos);
+
+  const toggle = document.getElementById('menu-toggle');
+  const navbar = document.getElementById('navbar');
+
+  toggle.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+    toggle.classList.toggle('active');
+  });
