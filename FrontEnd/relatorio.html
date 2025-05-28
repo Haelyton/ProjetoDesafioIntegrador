@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatório de Estoque</title>
+  <link rel="stylesheet" href="assets/CSS/relatorio.css">
+</head>
+<body>
+  <header id="header">
+    <img src="assets/IMG/logo.png" alt="Logo" class="logo">
+    <ul id="navbar">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="create.html">Cadastrar Produto</a></li>
+      <li><a href="#" class="active">Relatório</a></li>
+    </ul>
+  </header>
+
+  <main class="container">
+    <h1>Relatório de Estoque</h1>
+    <table class="tabela-estoque">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Estoque</th>
+          <th>Preço (R$)</th>
+          <th>Total (R$)</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-corpo">
+        <!-- JavaScript preencherá aqui -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>Valor Total em Estoque:</strong></td>
+          <td id="total-geral"><strong>R$ 0,00</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </main>
+
+  <script src="assets/JavaScript/relatorio.js"></script>
+</body>
+</html>
