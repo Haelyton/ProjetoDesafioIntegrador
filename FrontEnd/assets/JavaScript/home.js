@@ -158,3 +158,9 @@ window.addEventListener("load", carregarProdutos);
     navbar.classList.toggle('active');
     toggle.classList.toggle('active');
   });
+
+  document.getElementById('btn-logout').addEventListener('click', function () {
+    // Redireciona para a página de login
+    window.location.href = 'login.html';
+});
+
