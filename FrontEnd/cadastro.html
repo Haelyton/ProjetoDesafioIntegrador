@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro de Usuário</title>
+  <link rel="stylesheet" href="assets/CSS/cadastro.css" />
+</head>
+<body>
+  <header id="header">
+    <a href="index.html">
+      <img src="assets/img/image-removebg-preview.png" class="logo" alt="Logo" />
+    </a>
+
+    <nav>
+      <ul id="navbar" class="navbar">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="relatorio.html">Relatório</a></li>
+        <li><a href="cadastro.html" class="active">Cadastro de Usuário</a></li>
+        <li><button id="btn-logout">Logout</button></li>
+      </ul>
+      <button id="btn-menu" aria-label="Abrir menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Cadastro de Usuário</h1>
+    <form id="form-cadastro-usuario">
+      <input type="text" id="nome" placeholder="Nome" />
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="senha" placeholder="Senha" />
+      <button type="submit">Cadastrar</button>
+      <p id="mensagem"></p>
+    </form>
+    <p id="mensagem" style="margin-top: 15px;"></p>
+  </main>
+
+  <script src="assets/JavaScript/cadastro.js"></script>
+</body>
+</html>

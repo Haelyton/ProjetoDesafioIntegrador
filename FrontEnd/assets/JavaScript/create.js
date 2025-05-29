@@ -68,3 +68,8 @@ document.getElementById("productForm").addEventListener("submit", function (e) {
       navbar.classList.remove('show');
     });
   });
+
+  document.getElementById('btn-logout').addEventListener('click', function () {
+    // Redireciona para a página de login
+    window.location.href = 'login.html';
+});

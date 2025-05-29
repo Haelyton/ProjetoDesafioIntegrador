@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Relatório de Estoque</title>
-  <link rel="stylesheet" href="assets/CSS/relatorio.css">
+  <link rel="stylesheet" href="assets/CSS/relatorio.css" />
 </head>
 <body>
   <header id="header">
-    <img src="assets/IMG/logo.png" alt="Logo" class="logo">
-    <ul id="navbar">
-      <li><a href="index.html">Dashboard</a></li>
-      <li><a href="create.html">Cadastrar Produto</a></li>
-      <li><a href="#" class="active">Relatório</a></li>
-    </ul>
+    <a href="index.html">
+      <img src="assets/img/image-removebg-preview.png" alt="Logo" class="logo" />
+    </a>
+
+    <nav>
+      <ul id="navbar" class="navbar">
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="create.html">Cadastrar Produto</a></li>
+        <li><a href="#" class="active">Relatório</a></li>
+        <li><a href="cadastro.html">Cadastro de Usuário</a></li>
+        <li><button id="btn-logout">Logout</button></li>
+      </ul>
+      <button id="btn-menu" aria-label="Abrir menu">&#9776;</button>
+    </nav>
   </header>
 
   <main class="container">
