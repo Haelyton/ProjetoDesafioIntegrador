@@ -1,3 +1,4 @@
+
 # 📦 Sistema de Gerenciamento de Produtos
 
 Este é um projeto web desenvolvido como parte do Projeto Integrador do 3º Período do curso de Engenharia de Software. O sistema permite o gerenciamento completo de produtos com funcionalidades de login, cadastro, CRUD de produtos e geração de relatórios. Toda a lógica é implementada com JavaScript puro, utilizando `localStorage` para simular um banco de dados local.
@@ -15,6 +16,31 @@ Este é um projeto web desenvolvido como parte do Projeto Integrador do 3º Per�
 
 ## 📁 Estrutura de Diretórios
 
+```
+📁 projeto-gerenciador-produtos/
+├── index.html                 # Tela inicial após login
+├── login.html                 # Tela de login
+├── cadastro.html              # Tela de cadastro de usuário
+├── create.html                # Tela de cadastro de produto
+├── relatorio.html             # Tela de relatório de estoque
+├── backend/
+│   └── backend.js             # Módulo de lógica para manipulação de dados
+├── assets/
+│   ├── CSS/
+│   │   ├── login.css
+│   │   ├── home.css
+│   │   ├── cadastro.css
+│   │   ├── create.css
+│   │   └── relatorio.css
+│   ├── img/                   # Imagens utilizadas na interface
+│   └── JavaScript/
+│       ├── login.js
+│       ├── cadastro.js
+│       ├── create.js
+│       ├── relatorio.js
+│       └── index.js
+└── README.md                  # Documentação do projeto
+```
 
 ## 🚀 Como Executar o Projeto
 
@@ -24,30 +50,35 @@ Este é um projeto web desenvolvido como parte do Projeto Integrador do 3º Per�
 git clone git@github.com:Haelyton/ProjetoDesafioIntegrador.git
 ```
 
-2. No terminal da sua Idea de preferência o VsCode acesse a pasta do projeto:
+2. Acesse a pasta do projeto:
 
-```
+```bash
 cd ProjetoDesafioIntegrador
 ```
-Abra o arquivo index.html no seu navegador para iniciar o sistema.
-```
-Verifique se o Go Live está instalado como extensão no seu VsCode.
-Se estiver clique em rodar GoLive no canto Inferior Direito da sua Idea
-```
 
-### 👨‍💻 Tecnologias Utilizadas
-HTML5
+3. Abra o arquivo `login.html` no seu navegador para iniciar o sistema.
 
-CSS3
+> ⚠️ Não é necessário servidor ou instalação de dependências. O projeto roda diretamente no navegador.
 
-JavaScript (ES6+)
+---
 
-Armazenamento: localStorage
+## 👨‍💻 Tecnologias Utilizadas
 
-### 📚 Créditos
-Projeto desenvolvido por (Haelyton Maicon Stempkoski, Enrique Feliczaki e Guilherme Luiz Quevedo)
-Curso: Engenharia de Software – 3º Período
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Armazenamento: `localStorage`
+
+---
+
+## 📚 Créditos
+
+Projeto desenvolvido por **(Haelyton Maicon Stempkoski, Guilherme Luiz Quevedo e Enrique Feliczaki)**  
+Curso: Engenharia de Software – 3º Período  
 Instituição: Campo Real
 
+---
 
+## 📎 Licença
 
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
