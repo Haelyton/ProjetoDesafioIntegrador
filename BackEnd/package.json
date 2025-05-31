@@ -7,7 +7,7 @@
     "projetodesafiointegrador": "file:"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node CRUD.js"
   },
   "name": "projetodesafiointegrador",
   "description": "",
