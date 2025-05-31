@@ -18,27 +18,28 @@ Este é um projeto web desenvolvido como parte do Projeto Integrador do 3º Per�
 
 ```
 📁 projeto-gerenciador-produtos/
-├── index.html                 # Tela inicial após login
-├── login.html                 # Tela de login
-├── cadastro.html              # Tela de cadastro de usuário
-├── create.html                # Tela de cadastro de produto
-├── relatorio.html             # Tela de relatório de estoque
-├── backend/
-│   └── backend.js             # Módulo de lógica para manipulação de dados
-├── assets/
-│   ├── CSS/
-│   │   ├── login.css
-│   │   ├── home.css
-│   │   ├── cadastro.css
-│   │   ├── create.css
-│   │   └── relatorio.css
-│   ├── img/                   # Imagens utilizadas na interface
-│   └── JavaScript/
-│       ├── login.js
-│       ├── cadastro.js
-│       ├── create.js
-│       ├── relatorio.js
-│       └── index.js
+├── BackEnd
+│      └── CRUD.js             # Módulo de lógica para manipulação de dados
+├── FrontEnd
+│     ├── assets/
+│     │       ├── CSS/
+│     │       │    ├── login.css
+│     │       │    ├── home.css
+│     │       │    ├── cadastro.css
+│     │       │    ├── create.css
+│     │       │    └── relatorio.css
+│     │       ├── img/                   # Imagens utilizadas na interface
+│     │       └── JavaScript/
+│     │              ├── login.js
+│     │              ├── cadastro.js
+│     │              ├── create.js
+│     │              ├── relatorio.js
+│     │              └── index.js
+│     ├── index.html                 # Tela inicial após login
+│     ├── login.html                 # Tela de login
+│     ├── cadastro.html              # Tela de cadastro de usuário
+│     ├── create.html                # Tela de cadastro de produto
+│     └── relatorio.html             # Tela de relatório de estoque
 └── README.md                  # Documentação do projeto
 ```
 
