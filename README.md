@@ -57,7 +57,7 @@ git clone git@github.com:Haelyton/ProjetoDesafioIntegrador.git
 cd ProjetoDesafioIntegrador
 ```
 
-3. Abra o arquivo `login.html` no seu navegador para iniciar o sistema.
+3. Abra o arquivo `index.html` no seu navegador para iniciar o sistema.
 
 > ⚠️ Não é necessário servidor ou instalação de dependências. O projeto roda diretamente no navegador.
 
