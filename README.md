@@ -22,16 +22,18 @@ Este é um projeto web desenvolvido como parte do Projeto Integrador do 3º Per�
 
 ```bash
 git clone git@github.com:Haelyton/ProjetoDesafioIntegrador.git
+```
 
-2. No terminal da sua Idea de prefeência o VsCode acesse a pasta do projeto:
+2. No terminal da sua Idea de preferência o VsCode acesse a pasta do projeto:
 
+```
 cd nome-do-repositorio
-
+```
 Abra o arquivo index.html no seu navegador para iniciar o sistema.
-
+```
 Verifique se o Go Live está instalado como extensão no seu VsCode.
 Se estiver clique em rodar GoLive no canto Inferior Direito da sua Idea
-
+```
 
 👨‍💻 Tecnologias Utilizadas
 HTML5
