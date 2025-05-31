@@ -35,7 +35,7 @@ Verifique se o Go Live está instalado como extensão no seu VsCode.
 Se estiver clique em rodar GoLive no canto Inferior Direito da sua Idea
 ```
 
-👨‍💻 Tecnologias Utilizadas
+### 👨‍💻 Tecnologias Utilizadas
 HTML5
 
 CSS3
@@ -44,7 +44,10 @@ JavaScript (ES6+)
 
 Armazenamento: localStorage
 
-
+### 📚 Créditos
+Projeto desenvolvido por (Haelyton Maicon Stempkoski, Enrique Feliczaki e Guilherme Luiz Quevedo)
+Curso: Engenharia de Software – 3º Período
+Instituição: Campo Real
 
 
 
