@@ -1,45 +1,50 @@
+let produtos = JSON.parse(global.produtos || '[]'); // memória temporária
+
+function salvarProdutosLocal(produtosArray) {
+  global.produtos = JSON.stringify(produtosArray);
+}
+
 function gerarId() {
   return Date.now();
 }
 
-export function getProdutos() {
-  return JSON.parse(localStorage.getItem("produtos")) || [];
-}
+export default function handler(req, res) {
+  const { method } = req;
 
-function salvarProdutos(produtos) {
-  localStorage.setItem("produtos", JSON.stringify(produtos));
-}
+  if (method === 'GET') {
+    return res.status(200).json(produtos);
+  }
 
-export function criarProduto(produto) {
-  const produtos = getProdutos();
-  produto.id = gerarId();
-  produtos.push(produto);
-  salvarProdutos(produtos);
-}
+  if (method === 'POST') {
+    const novoProduto = { id: gerarId(), ...req.body };
+    produtos.push(novoProduto);
+    salvarProdutosLocal(produtos);
+    return res.status(201).json(novoProduto);
+  }
 
-export function atualizarProduto(id, dadosAtualizados) {
-  const produtos = getProdutos();
-  const index = produtos.findIndex(prod => prod.id === id);
-  if (index !== -1) {
+  if (method === 'PUT') {
+    const { id, ...dadosAtualizados } = req.body;
+    const index = produtos.findIndex(p => p.id === id);
+    if (index === -1) {
+      return res.status(404).json({ message: 'Produto não encontrado' });
+    }
     produtos[index] = { ...produtos[index], ...dadosAtualizados, id };
-    salvarProdutos(produtos);
-    return true;
+    salvarProdutosLocal(produtos);
+    return res.status(200).json(produtos[index]);
   }
-  return false;
-}
 
-export function getProdutoPorId(id) {
-  const produtos = getProdutos();
-  return produtos.find(prod => prod.id === id);
-}
-
-export function deletarProduto(id) {
-  let produtos = getProdutos();
-  const tamanhoAntes = produtos.length;
-  produtos = produtos.filter(prod => prod.id !== id);
-  if (produtos.length < tamanhoAntes) {
-    salvarProdutos(produtos);
-    return true;
+  if (method === 'DELETE') {
+    const { id } = req.body;
+    const tamanhoAntes = produtos.length;
+    produtos = produtos.filter(p => p.id !== id);
+    salvarProdutosLocal(produtos);
+    if (produtos.length < tamanhoAntes) {
+      return res.status(200).json({ message: 'Produto deletado' });
+    } else {
+      return res.status(404).json({ message: 'Produto não encontrado' });
+    }
   }
-  return false;
+
+  res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
+  res.status(405).end(`Método ${method} não permitido`);
 }
