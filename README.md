@@ -27,7 +27,7 @@ git clone git@github.com:Haelyton/ProjetoDesafioIntegrador.git
 2. No terminal da sua Idea de preferência o VsCode acesse a pasta do projeto:
 
 ```
-cd nome-do-repositorio
+cd ProjetoDesafioIntegrador
 ```
 Abra o arquivo index.html no seu navegador para iniciar o sistema.
 ```
