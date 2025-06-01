@@ -1,60 +1,54 @@
-// Recupera os produtos salvos na variável global (memória temporária), ou inicia com array vazio
+const express = require('express');
+const router = express.Router();
 
-let produtos = JSON.parse(global.produtos || '[]'); // memória temporária
+// produtos em memória
+let produtos = JSON.parse(global.produtos || '[]');
 
-// Função para salvar os produtos na variável global (persistência temporária em tempo de execução)
 function salvarProdutosLocal(produtosArray) {
   global.produtos = JSON.stringify(produtosArray);
 }
 
-// Função para gerar um ID único com base no timestamp atual
 function gerarId() {
   return Date.now();
 }
 
-// Função principal que lida com requisições HTTP (GET, POST, PUT, DELETE)
-export default function handler(req, res) {
-  const { method } = req; // Obtém o método HTTP da requisição
+// GET /api/products
+router.get('/', (req, res) => {
+  res.status(200).json(produtos);
+});
 
-  // Retorna todos os produtos (GET)
-  if (method === 'GET') {
-    return res.status(200).json(produtos);
-  }
+// POST /api/products
+router.post('/', (req, res) => {
+  const novoProduto = { id: gerarId(), ...req.body };
+  produtos.push(novoProduto);
+  salvarProdutosLocal(produtos);
+  res.status(201).json(novoProduto);
+});
 
-  // Adiciona um novo produto (POST)
-  if (method === 'POST') {
-    const novoProduto = { id: gerarId(), ...req.body };
-    produtos.push(novoProduto);
-    salvarProdutosLocal(produtos);
-    return res.status(201).json(novoProduto);
+// PUT /api/products/:id
+router.put('/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const dadosAtualizados = req.body;
+  const index = produtos.findIndex(p => p.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: 'Produto não encontrado' });
   }
+  produtos[index] = { ...produtos[index], ...dadosAtualizados, id };
+  salvarProdutosLocal(produtos);
+  res.status(200).json(produtos[index]);
+});
 
-  // Atualiza um produto existente (PUT)
-  if (method === 'PUT') {
-    const { id, ...dadosAtualizados } = req.body;
-    const index = produtos.findIndex(p => p.id === id);
-    if (index === -1) {
-      return res.status(404).json({ message: 'Produto não encontrado' });
-    }
-    produtos[index] = { ...produtos[index], ...dadosAtualizados, id };
-    salvarProdutosLocal(produtos);
-    return res.status(200).json(produtos[index]);
+// DELETE /api/products/:id
+router.delete('/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const tamanhoAntes = produtos.length;
+  produtos = produtos.filter(p => p.id !== id);
+  salvarProdutosLocal(produtos);
+  if (produtos.length < tamanhoAntes) {
+    res.status(200).json({ message: 'Produto deletado' });
+  } else {
+    res.status(404).json({ message: 'Produto não encontrado' });
   }
+});
 
-  // Remove um produto (DELETE)
-  if (method === 'DELETE') {
-    const { id } = req.body;
-    const tamanhoAntes = produtos.length;
-    produtos = produtos.filter(p => p.id !== id);
-    salvarProdutosLocal(produtos);
-    if (produtos.length < tamanhoAntes) {
-      return res.status(200).json({ message: 'Produto deletado' });
-    } else {
-      return res.status(404).json({ message: 'Produto não encontrado' });
-    }
-  }
-  
-  // Se o método não for permitido, retorna erro 405
-  res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
-  res.status(405).end(`Método ${method} não permitido`);
-}
+module.exports = router;
