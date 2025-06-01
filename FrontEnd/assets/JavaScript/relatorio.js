@@ -7,31 +7,46 @@ document.addEventListener('DOMContentLoaded', () => {
     navbar.classList.toggle('active');
   });
 
-  // Preencher tabela com produtos do localStorage
-  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
   const corpoTabela = document.getElementById('tabela-corpo');
   const totalGeral = document.getElementById('total-geral');
 
-  let totalEstoque = 0;
+  async function carregarProdutos() {
+    try {
+      const response = await fetch('https://projetodesafiointegrador.onrender.com/api/products');
+      if (!response.ok) throw new Error('Erro ao buscar produtos');
 
-  produtos.forEach(produto => {
-    const preco = parseFloat(produto.preco) || 0;
-    const estoque = parseInt(produto.estoque) || 0;
-    const total = preco * estoque;
-    totalEstoque += total;
+      const produtos = await response.json();
 
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${produto.nome}</td>
-      <td>${estoque}</td>
-      <td>R$ ${preco.toFixed(2)}</td>
-      <td>R$ ${total.toFixed(2)}</td>
-    `;
+      corpoTabela.innerHTML = ''; // limpa tabela
+      let totalEstoque = 0;
 
-    corpoTabela.appendChild(tr);
-  });
+      produtos.forEach(produto => {
+        const preco = parseFloat(produto.preco) || 0;
+        const estoque = parseInt(produto.estoque) || 0;
+        const total = preco * estoque;
+        totalEstoque += total;
 
-  totalGeral.textContent = `R$ ${totalEstoque.toFixed(2)}`;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${produto.nome}</td>
+          <td>${estoque}</td>
+          <td>R$ ${preco.toFixed(2)}</td>
+          <td>R$ ${total.toFixed(2)}</td>
+        `;
+
+        corpoTabela.appendChild(tr);
+      });
+
+      totalGeral.textContent = `R$ ${totalEstoque.toFixed(2)}`;
+
+    } catch (error) {
+      console.error('Erro ao carregar produtos:', error);
+      corpoTabela.innerHTML = '<tr><td colspan="4">Erro ao carregar produtos.</td></tr>';
+      totalGeral.textContent = 'R$ 0.00';
+    }
+  }
+
+  carregarProdutos();
 
   // Botão logout
   document.getElementById('btn-logout').addEventListener('click', () => {

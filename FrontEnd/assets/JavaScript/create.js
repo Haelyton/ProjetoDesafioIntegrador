@@ -1,8 +1,7 @@
-import { criarProduto } from '/ProjetoDesafioIntegrador/BackEnd/CRUD.js';
-
 const inputImagem = document.getElementById("imagem");
 const previewImg = document.getElementById("preview-img");
 
+// Mostrar preview da imagem
 inputImagem.addEventListener("change", function () {
   const file = this.files[0];
 
@@ -19,7 +18,8 @@ inputImagem.addEventListener("change", function () {
   }
 });
 
-document.getElementById("productForm").addEventListener("submit", function (e) {
+// Ao enviar o formulário
+document.getElementById("productForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const file = inputImagem.files[0];
@@ -30,7 +30,7 @@ document.getElementById("productForm").addEventListener("submit", function (e) {
 
   const reader = new FileReader();
 
-  reader.onload = function (event) {
+  reader.onload = async function (event) {
     const imagemBase64 = event.target.result;
 
     const produto = {
@@ -43,33 +43,49 @@ document.getElementById("productForm").addEventListener("submit", function (e) {
       imagem: imagemBase64
     };
 
-    criarProduto(produto);
+    try {
+      const resposta = await fetch("https://projetodesafiointegrador.onrender.com/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(produto)
+      });
 
-    // Navegar para dashboard APÓS salvar produto
-    window.location.href = "index.html";
+      if (!resposta.ok) {
+        throw new Error("Erro ao criar produto");
+      }
+
+      alert("Produto criado com sucesso!");
+      window.location.href = "index.html";
+    } catch (error) {
+      console.error("Erro:", error);
+      alert("Erro ao salvar produto. Tente novamente.");
+    }
   };
 
   reader.readAsDataURL(file);
 });
 
-  const menuToggle = document.getElementById('menu-toggle');
-  const navbar = document.getElementById('navbar');
+// Menu hamburguer
+const menuToggle = document.getElementById('menu-toggle');
+const navbar = document.getElementById('navbar');
 
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navbar.classList.toggle('show');
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('active');
+  navbar.classList.toggle('show');
+});
+
+// Fecha menu ao clicar em um link
+const navLinks = document.querySelectorAll('#navbar a');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    menuToggle.classList.remove('active');
+    navbar.classList.remove('show');
   });
+});
 
-  // Opcional: fechar menu ao clicar em um link
-  const navLinks = document.querySelectorAll('#navbar a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.classList.remove('active');
-      navbar.classList.remove('show');
-    });
-  });
-
-  document.getElementById('btn-logout').addEventListener('click', function () {
-    // Redireciona para a página de login
-    window.location.href = 'login.html';
+// Logout
+document.getElementById('btn-logout').addEventListener('click', function () {
+  window.location.href = 'login.html';
 });
