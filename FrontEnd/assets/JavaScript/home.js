@@ -1,7 +1,14 @@
+// URL da API para comunicação com o back-end
 const API_URL = "https://projetodesafiointegrador.onrender.com/api/products";
 
+// Variável para armazenar temporariamente o produto selecionado
 let produtoAtual = null;
 
+/**
+ * Cria visualmente um card de produto com os dados fornecidos.
+ * @param {Object} produto - Objeto com os dados do produto.
+ * @returns {HTMLElement} - Elemento HTML do card criado.
+ */
 function criarCardProduto(produto) {
   const card = document.createElement("div");
   card.className = "card";
@@ -28,6 +35,7 @@ function criarCardProduto(produto) {
   card.appendChild(pPreco);
   card.appendChild(pEstoque);
 
+  // Ao clicar no card, abre o modal de edição com os dados do produto
   card.addEventListener("click", () => {
     abrirModal(produto);
   });
@@ -35,6 +43,10 @@ function criarCardProduto(produto) {
   return card;
 }
 
+/**
+ * Preenche e exibe o modal de edição com os dados do produto selecionado.
+ * @param {Object} produto - Produto a ser exibido no modal.
+ */
 function abrirModal(produto) {
   produtoAtual = produto;
 
@@ -51,22 +63,27 @@ function abrirModal(produto) {
   document.getElementById("modal-img-input").value = "";
 }
 
+// Fecha o modal de edição
 function fecharModal() {
   document.getElementById("modal").style.display = "none";
   produtoAtual = null;
 }
 
+// Fecha o modal de confirmação de exclusão
 function fecharModalDelete() {
   document.getElementById("modal-confirm-delete").style.display = "none";
 }
 
+// Botão de fechar modal
 document.querySelector(".close-btn").addEventListener("click", fecharModal);
 
+// Fecha os modais ao clicar fora da área de conteúdo
 window.addEventListener("click", (e) => {
   if (e.target === document.getElementById("modal")) fecharModal();
   if (e.target === document.getElementById("modal-confirm-delete")) fecharModalDelete();
 });
 
+// Submissão do formulário de edição do produto
 document.getElementById("form-editar-produto").addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!produtoAtual) return;
@@ -83,6 +100,7 @@ document.getElementById("form-editar-produto").addEventListener("submit", async 
     imagem: produtoAtual.imagem
   };
 
+  // Se uma nova imagem for enviada, converte para Base64
   if (file) {
     const reader = new FileReader();
     reader.onload = async function (event) {
@@ -95,14 +113,16 @@ document.getElementById("form-editar-produto").addEventListener("submit", async 
   }
 
   fecharModal();
-  carregarProdutos();
+  carregarProdutos(); // Recarrega a lista de produtos
 });
 
+// Ao clicar no botão de deletar, exibe o modal de confirmação
 document.getElementById("btn-deletar-produto").addEventListener("click", () => {
   if (!produtoAtual) return;
   document.getElementById("modal-confirm-delete").style.display = "flex";
 });
 
+// Confirma a exclusão do produto
 document.getElementById("confirm-delete-btn").addEventListener("click", async () => {
   if (!produtoAtual) return;
   await deletarProduto(produtoAtual.id);
@@ -111,25 +131,38 @@ document.getElementById("confirm-delete-btn").addEventListener("click", async ()
   carregarProdutos();
 });
 
+// Cancela a exclusão do produto
 document.getElementById("cancel-delete-btn").addEventListener("click", fecharModalDelete);
 
+/**
+ * Renderiza os produtos na interface como cards.
+ * @param {Array} produtos - Lista de produtos a serem renderizados.
+ */
 function renderizarProdutos(produtos) {
   const grid = document.getElementById("productsGrid");
   grid.innerHTML = "";
   produtos.forEach(prod => grid.appendChild(criarCardProduto(prod)));
 }
 
+/**
+ * Busca os produtos da API e renderiza na tela.
+ */
 async function carregarProdutos() {
   try {
     const response = await fetch(API_URL);
     const produtos = await response.json();
     renderizarProdutos(produtos);
-    produtosOriginais = produtos; // para o filtro funcionar
+    produtosOriginais = produtos; // Armazena para pesquisa
   } catch (err) {
     console.error("Erro ao carregar produtos:", err);
   }
 }
 
+/**
+ * Atualiza um produto na API.
+ * @param {number} id - ID do produto.
+ * @param {Object} dados - Dados atualizados do produto.
+ */
 async function atualizarProduto(id, dados) {
   try {
     await fetch(`${API_URL}/${id}`, {
@@ -142,6 +175,10 @@ async function atualizarProduto(id, dados) {
   }
 }
 
+/**
+ * Deleta um produto da API.
+ * @param {number} id - ID do produto.
+ */
 async function deletarProduto(id) {
   try {
     await fetch(`${API_URL}/${id}`, {
@@ -152,8 +189,10 @@ async function deletarProduto(id) {
   }
 }
 
+// Armazena os produtos originais para pesquisa
 let produtosOriginais = [];
 
+// Lógica do campo de pesquisa
 const searchInput = document.getElementById("searchInput");
 if (searchInput) {
   searchInput.addEventListener("input", () => {
@@ -165,8 +204,10 @@ if (searchInput) {
   });
 }
 
+// Carrega os produtos ao abrir a página
 window.addEventListener("load", carregarProdutos);
 
+// Menu hamburguer (para mobile)
 const toggle = document.getElementById('menu-toggle');
 const navbar = document.getElementById('navbar');
 
@@ -175,6 +216,7 @@ toggle.addEventListener('click', () => {
   toggle.classList.toggle('active');
 });
 
+// Botão de logout redireciona para a página de login
 document.getElementById('btn-logout').addEventListener('click', function () {
   window.location.href = 'login.html';
 });

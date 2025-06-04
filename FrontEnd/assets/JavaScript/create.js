@@ -1,28 +1,33 @@
+// Referência aos elementos de imagem
 const inputImagem = document.getElementById("imagem");
 const previewImg = document.getElementById("preview-img");
 
-// Mostrar preview da imagem
+// Mostrar o preview da imagem selecionada pelo usuário
 inputImagem.addEventListener("change", function () {
   const file = this.files[0];
 
   if (file) {
     const reader = new FileReader();
+
     reader.onload = function (e) {
-      previewImg.src = e.target.result;
-      previewImg.style.display = "block";
+      previewImg.src = e.target.result;        // Exibe a imagem no elemento <img>
+      previewImg.style.display = "block";      // Torna a imagem visível
     };
-    reader.readAsDataURL(file);
+
+    reader.readAsDataURL(file);                // Converte a imagem para Base64
   } else {
+    // Caso nenhum arquivo seja selecionado
     previewImg.src = "";
     previewImg.style.display = "none";
   }
 });
 
-// Ao enviar o formulário
+// Envio do formulário de criação de produto
 document.getElementById("productForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
+  e.preventDefault(); // Impede o envio padrão do formulário
 
   const file = inputImagem.files[0];
+
   if (!file) {
     alert("Por favor, selecione uma imagem para o produto.");
     return;
@@ -30,9 +35,11 @@ document.getElementById("productForm").addEventListener("submit", async function
 
   const reader = new FileReader();
 
+  // Quando a imagem for carregada, envia os dados para o back-end
   reader.onload = async function (event) {
     const imagemBase64 = event.target.result;
 
+    // Objeto com os dados do produto
     const produto = {
       nome: document.getElementById("nome").value.trim(),
       descricao: document.getElementById("descricao").value.trim(),
@@ -44,6 +51,7 @@ document.getElementById("productForm").addEventListener("submit", async function
     };
 
     try {
+      // Envia o produto para a API via POST
       const resposta = await fetch("https://projetodesafiointegrador.onrender.com/api/products", {
         method: "POST",
         headers: {
@@ -57,26 +65,29 @@ document.getElementById("productForm").addEventListener("submit", async function
       }
 
       alert("Produto criado com sucesso!");
-      window.location.href = "index.html";
+      window.location.href = "index.html"; // Redireciona para a página principal
     } catch (error) {
       console.error("Erro:", error);
       alert("Erro ao salvar produto. Tente novamente.");
     }
   };
 
-  reader.readAsDataURL(file);
+  reader.readAsDataURL(file); // Lê o arquivo da imagem como Base64
 });
 
-// Menu hamburguer
+// =========================
+// Menu Hamburguer Responsivo
+// =========================
 const menuToggle = document.getElementById('menu-toggle');
 const navbar = document.getElementById('navbar');
 
+// Alterna classe para exibir/ocultar o menu ao clicar no botão
 menuToggle.addEventListener('click', () => {
   menuToggle.classList.toggle('active');
   navbar.classList.toggle('show');
 });
 
-// Fecha menu ao clicar em um link
+// Fecha o menu ao clicar em qualquer link
 const navLinks = document.querySelectorAll('#navbar a');
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
@@ -85,7 +96,10 @@ navLinks.forEach(link => {
   });
 });
 
-// Logout
+// =========================
+// Botão de Logout
+// =========================
 document.getElementById('btn-logout').addEventListener('click', function () {
+  // Redireciona para a página de login (simulando logout)
   window.location.href = 'login.html';
 });
