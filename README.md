@@ -45,6 +45,10 @@ Este é um projeto web desenvolvido como parte do Projeto Integrador do 3º Per�
 
 ## 🚀 Como Executar o Projeto
 
+AVISO
+Certifique dentro do repositório Remoto foi criado diversas Branchs a Branch aonde contém toda a Aplicação Funcionando é a Branch é Ajusta-BackEnd-para-deploy,
+Então selecione essa branch e realize o clone dela em sua máquina o link da Hospedagem consta nas duas branchs main e Ajusta-BackEnd-para-deploy
+
 1. Clone o repositório:
 
 ```bash
@@ -83,3 +87,12 @@ Instituição: Campo Real
 ## 📎 Licença
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 🎥 Link do Vídeo no YouTube  
+[Assista à apresentação no YouTube](https://www.youtube.com/watch?v=_pCZRTYQpNE&t=2s)
+
+## 🎥 Link da Aplicação Hospedada  
+[Acesse já nosso site](https://projeto-desafio-integrador-git-ajusta-2069b4-haelytons-projects.vercel.app)
+
+
+
