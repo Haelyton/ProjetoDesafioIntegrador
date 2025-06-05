@@ -45,6 +45,10 @@ Este é um projeto web desenvolvido como parte do Projeto Integrador do 3º Per�
 
 ## 🚀 Como Executar o Projeto
 
+AVISO
+Certifique dentro do repositório Remoto foi criado diversas Branchs a Branch aonde contém toda a Aplicação Funcionando é a Branch é Ajusta-BackEnd-para-deploy,
+Então selecione essa branch e realize o clone dela em sua máquina o link da Hospedagem consta nas duas branchs main e Ajusta-BackEnd-para-deploy
+
 1. Clone o repositório:
 
 ```bash
