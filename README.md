@@ -83,3 +83,12 @@ Instituição: Campo Real
 ## 📎 Licença
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 🎥 Link do Vídeo no YouTube  
+[Assista à apresentação no YouTube](https://www.youtube.com/watch?v=_pCZRTYQpNE&t=2s)
+
+## 🎥 Link da Aplicação Hospedada  
+[Acesse já nosso site](https://projeto-desafio-integrador-git-ajusta-2069b4-haelytons-projects.vercel.app)
+
+
+
